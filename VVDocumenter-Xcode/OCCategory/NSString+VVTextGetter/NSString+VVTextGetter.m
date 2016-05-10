@@ -115,7 +115,7 @@
     NSString *line = nil;
     if (nextLineRange.location != NSNotFound && rangeToString.location != NSNotFound && nextLineRange.location <= rangeToString.location) {
         NSRange lineRange = NSMakeRange(nextLineRange.location + 1, rangeToString.location - nextLineRange.location);
-        if (lineRange.location < [self length] && NSMaxRange(lineRange) < [self length]) {
+        if (lineRange.location < [self length] && NSMaxRange(lineRange) <= [self length]) {
             line = [self substringWithRange:lineRange];
             return [[VVTextResult alloc] initWithRange:lineRange string:line];
         } else {
@@ -216,7 +216,7 @@
         resultRange = NSMakeRange(nextLineRange.location + 1, targetRange.location - nextLineRange.location);
     }
     
-    if (resultRange.location < [self length] && NSMaxRange(resultRange) < [self length]) {
+    if (resultRange.location < [self length] && NSMaxRange(resultRange) <= [self length]) {
         NSString *result = [self substringWithRange:resultRange];
         return [[VVTextResult alloc] initWithRange:resultRange string:result];
     } else {
